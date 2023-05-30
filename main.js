@@ -148,7 +148,7 @@ function showProducts(categoryNumber, categoryOptions, subCategoryNumber) {
     const selectedProductNumber = ask(`${text}\nElije un producto o vuelve al menu principal.\n `, 'numberAndText', [selectedProducts.length, '99']);
     
     if (selectedProductNumber !== '99') {
-        const selectedProduct = selectedProducts[parseInt(selectedProductNumber)]
+        const selectedProduct = selectedProducts[parseInt(selectedProductNumber-1)]
         const productOptions = ask(`Nombre del producto: ${selectedProduct.name}\nPrecio: US$${selectedProduct.price}\n\n1. Agregar al carrito.\n2. Volver\n `, 'number', 2);
         
         if (productOptions === '1') {
@@ -171,13 +171,15 @@ function showProducts(categoryNumber, categoryOptions, subCategoryNumber) {
 function viewShoppingCart() {
     if (shoppingCart.length >= 1) {
         let text = 'Articulos agregados al carrito de compras: \n';
+        let priceToPay = 0;
 
         shoppingCart.forEach((item, index) => {
             index += 1;
             text += `\n#${index}. ${item.name} (US$${item.price})`;
+            priceToPay += item.price;
         })
 
-        text += '\n\n1. Realizar compra. \n2. Volver a la tienda.\n '
+        text += `\n\n[#] Precio a pagar: US$${priceToPay}\n\n1. Realizar compra. \n2. Volver a la tienda.\n `
         const shoppingCartOptions = ask(text, 'number', 2);
 
         if (shoppingCartOptions === '1') {
