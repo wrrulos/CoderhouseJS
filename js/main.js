@@ -393,7 +393,7 @@ function createProductCard(product) {
         <div class="card-body">
           <h5 class="card-title">${product.name}</h5>
           <p class="card-text">Price: $${product.price}</p>
-          <button class="btn btn-primary btn-add-to-cart" data-product-id="${product.id}">Add to Cart</button>
+          <button class="btn btn-primary btn-add-to-cart" data-product-id="${product.id}">Añadir</button>
         </div>
       </div>
     `;
